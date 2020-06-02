@@ -1,0 +1,14 @@
+{
+  "name": "tfjs学习",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "snowpack dev"
+  },
+  "author": "uncoder-fe",
+  "license": "ISC",
+  "devDependencies": {
+    "snowpack": "^2.0.2"
+  }
+}
