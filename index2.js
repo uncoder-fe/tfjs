@@ -144,19 +144,18 @@ async function run() {
   console.log("训练结束");
   const points = [];
   let isClick = false;
-  canvas.addEventListener("mousedown", (event) => {
+  const handleMousedown = (event) => {
     points.length = 0;
-    console.log(points);
     points.push([event.offsetX, event.offsetY]);
     isClick = true;
-  });
-  canvas.addEventListener("mousemove", () => {
+  };
+  const handleMousemove = (event) => {
     if (isClick) {
       points.push([event.offsetX, event.offsetY]);
       drawLine(points);
     }
-  });
-  canvas.addEventListener("mouseup", () => {
+  };
+  const handleMouseup = () => {
     isClick = false;
     const data = ctx.getImageData(0, 0, 28, 28).data;
     const input = [];
@@ -171,9 +170,14 @@ async function run() {
         console.log(scores[0], predicted);
         document.querySelector("#number").innerHTML = `可能是数字:${predicted}`;
       });
-  });
+  };
+  canvas.addEventListener("mousedown", handleMousedown);
+  canvas.addEventListener("mousemove", handleMousemove);
+  canvas.addEventListener("mouseup", handleMouseup);
+  canvas.addEventListener("mouseout", handleMouseup);
   clearBtn.addEventListener("click", () => {
     ctx.clearRect(0, 0, 28, 28);
+    ctx.fillRect(0, 0, 28, 28);
   });
 }
 
